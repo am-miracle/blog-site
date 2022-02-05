@@ -37,4 +37,63 @@ export const getPosts = async ()=> {
     const result = await request(graphqlAPI,query);
 
     return result.postsConnection.edges;
+};
+
+// Getting the recent posts
+
+export const getRecentPost = async () => {
+    const query = gql`
+        query GetPostDetails() {
+            posts(orderBy: createdAt_ASC, last: 3) {
+                title
+                featuredimage {
+                  url
+                }
+                createdAt
+                slug
+            }
+        }
+    `
+    const result = await request(graphqlAPI,query);
+
+    return result.posts;
+}
+
+// don't display the current article but display other article that display some the categories we want to get
+
+export const getSimilarPosts = async () => {
+    const query = gql`
+        query GetPostDetails($slug: String!, $categories: [String!]) {
+            posts(
+                where: {slug_not: $slug, AND: {categories_some: { slug_in: $categories}}}
+                last: 3
+            ){
+                title
+                featuredimage {
+                  url
+                }
+                createdAt
+                slug
+            }
+        }
+    `
+    const result = await request(graphqlAPI,query);
+
+    return result.posts;
+}
+
+// getting the categories_some
+
+export const getCategories = async () => {
+    const query = gql`
+        query GetCategories {
+            categories {
+                name
+                slug
+            }
+        }
+    `
+    const result = await request(graphqlAPI,query);
+
+    return result.categories;
 }
