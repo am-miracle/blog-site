@@ -18,7 +18,7 @@ const PostWidget = ({ categories, slug }) => {
     }
   }, [slug]);
 
-   
+
   return (
       <div className='bg-white shadow-lg rounded-lg p-8 mb-8'>
           <h3 className="text-xl mb-8 font-semibold border-b pb-4">
@@ -27,12 +27,13 @@ const PostWidget = ({ categories, slug }) => {
           {relatedPosts.map((post)=>(
             <div className='flex items-center w-full mb-4' key={post.title}>
               <div className='w-16 flex-none'>
-                <Image 
+                <Image
                   alt={post.title}
                   height='70px'
                   width='70px'
                   className='align-middle rounded-full'
                   src={post.featuredimage.url}
+                  priority='70px'
                 />
               </div>
               <div className='flex-grow ml-4'>

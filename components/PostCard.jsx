@@ -8,7 +8,7 @@ const PostCard = ({post}) => {
   return (
     <div className='bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8'>
       <div className='relative overflow-hidden shadow-md pb-80 mb-6'>
-        <Image 
+        <Image
           src={post.featuredimage.url}
           layout='fill'
           alt={post.title}
@@ -28,6 +28,7 @@ const PostCard = ({post}) => {
             width={'50px'}
             className='align-middle rounded-full'
             src={post.author.photo.url}
+            priority='70px'
           />
           <p className='inline align-middle text-gray-700 ml-2 text-lg'>{post.author.name}</p>
         </div>
